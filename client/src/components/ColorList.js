@@ -19,8 +19,7 @@ const ColorList = ({ colors, updateColors }) => {
   };
 
   const addNewColor = color => {
-    setAdding(true)
-    setColorToEdit(color)
+
   }
 
   const saveEdit = e => {
@@ -105,7 +104,7 @@ const ColorList = ({ colors, updateColors }) => {
       )}
 
       <button onClick={() => setAdding(true)}>Add New Color</button>
-      <div className="spacer" />
+
 
 
       {/* stretch - build another form here to add a color */}
@@ -139,8 +138,7 @@ const ColorList = ({ colors, updateColors }) => {
           </div>
         </form>
       )}
-
-
+      <div className="spacer" />
 
     </div>
   );
