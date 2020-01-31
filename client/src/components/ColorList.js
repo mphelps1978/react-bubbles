@@ -18,9 +18,6 @@ const ColorList = ({ colors, updateColors }) => {
     setColorToEdit(color);
   };
 
-  const addNewColor = color => {
-
-  }
 
   const saveEdit = e => {
     e.preventDefault();
@@ -47,6 +44,17 @@ const ColorList = ({ colors, updateColors }) => {
       updateColors(colors.filter(color => color.id !== res.data))
     })
     .catch(err => console.log(err))
+  }
+
+  const addNewColor = color => {
+    setColorToAdd(color)
+    axiosWithAuth()
+    .post(`/api/colors/`, colorToAdd)
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => console.log(err)
+    )
   }
 
   return (
@@ -129,7 +137,7 @@ const ColorList = ({ colors, updateColors }) => {
                   code: { hex: e.target.value }
                 })
               }
-              value={colorToEdit.code.hex}
+
             />
           </label>
           <div className="button-row">
