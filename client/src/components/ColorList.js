@@ -47,10 +47,12 @@ const ColorList = ({ colors, updateColors }) => {
   }
 
   const addNewColor = color => {
-    setColorToAdd(color)
+    color.preventDefault()
     axiosWithAuth()
     .post(`/api/colors/`, colorToAdd)
     .then(res => {
+     updateColors(res.data)
+      setAdding(false)
       console.log(res)
     })
     .catch(err => console.log(err)
