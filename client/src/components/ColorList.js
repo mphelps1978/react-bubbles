@@ -21,7 +21,7 @@ const ColorList = ({ colors, updateColors }) => {
     axiosWithAuth()
     .put(`/api/colors/${colorToEdit.id}`, colorToEdit)
     .then(res => {
-      console.log('Result: ', res)
+      // console.log('Result: ', res)
       updateColors([
         ...colors.filter(color=> color.id !== colorToEdit.id),
         res.data
@@ -37,7 +37,7 @@ const ColorList = ({ colors, updateColors }) => {
     axiosWithAuth()
     .delete(`/api/colors/${color.id}`)
     .then(res => {
-      console.log(res)
+      // console.log(res)
       updateColors(colors.filter(color => color.id !== res.data))
     })
     .catch(err => console.log(err))
