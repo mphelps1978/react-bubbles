@@ -9,12 +9,19 @@ const initialColor = {
 const ColorList = ({ colors, updateColors }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
+  const [adding, setAdding] = useState(false)
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+  const [colorToAdd, setColorToAdd] = useState(initialColor);
 
   const editColor = color => {
     setEditing(true);
     setColorToEdit(color);
   };
+
+  const addNewColor = color => {
+    setAdding(true)
+    setColorToEdit(color)
+  }
 
   const saveEdit = e => {
     e.preventDefault();
@@ -96,8 +103,45 @@ const ColorList = ({ colors, updateColors }) => {
           </div>
         </form>
       )}
+
+      <button onClick={() => setAdding(true)}>Add New Color</button>
       <div className="spacer" />
+
+
       {/* stretch - build another form here to add a color */}
+      {adding && (
+        <form onSubmit={addNewColor}>
+          <legend>Add color</legend>
+          <label>
+            color name:
+            <input
+              onChange={e =>
+                setColorToAdd({ ...colorToAdd, color: e.target.value })
+              }
+              value={colorToAdd.color}
+            />
+          </label>
+          <label>
+            hex code:
+            <input
+              onChange={e =>
+                setColorToAdd({
+                  ...colorToAdd,
+                  code: { hex: e.target.value }
+                })
+              }
+              value={colorToEdit.code.hex}
+            />
+          </label>
+          <div className="button-row">
+            <button type="submit">save</button>
+            <button onClick={() => setAdding(false)}>cancel</button>
+          </div>
+        </form>
+      )}
+
+
+
     </div>
   );
 };
